@@ -6,8 +6,8 @@ export default class Score{
     
   toJSON(){
     return {
-      user,
-      points
+      user : this.user,
+      points : this.points
     }
   }
 }

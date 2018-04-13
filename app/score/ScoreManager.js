@@ -1,5 +1,6 @@
-import * as events from '../../core/Events';
+import events from '../../core/Events';
 import Score from './Score';
+import { ipcRenderer } from 'electron';
 
 export default class ScoreManager {
   constructor(){

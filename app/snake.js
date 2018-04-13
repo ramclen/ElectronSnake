@@ -1,4 +1,5 @@
 import ScoreManager from './score/ScoreManager';
+import Score from './score/Score'
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 
@@ -279,8 +280,8 @@ let gameoverScreen = document.getElementById("gameover-screen");
 
 new Timer(0.1, (deltaTime) => {
     if(world.gameOver){
-         gameoverScreen.style['visibility'] = 'visible';
-         new ScoreManager()
+        if(gameoverScreen.style['visibility'] == 'hidden') new ScoreManager().save(new Score('ramclen', score.textContent));
+        gameoverScreen.style['visibility'] = 'visible';
     }else gameoverScreen.style['visibility'] = 'hidden'
 
     score.textContent = ((world.snake.body.length-1) * 5);
