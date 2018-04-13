@@ -7,7 +7,7 @@ export default class StorageManager{
     }
   
     score(data){
-      fs.appendFile('score.json', data);
+      return fs.appendFile('score.json', JSON.stringify(data) + '\n');
     }
   
 }

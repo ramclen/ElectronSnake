@@ -1,6 +1,6 @@
-const { ipcRenderer, ipcMain } = require('electron');
+const { ipcMain } = require('electron');
 import StorageManager from './StorageManager';
-import * as events from '../core/Events';
+import events from '../core/Events';
 
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
@@ -17,10 +17,10 @@ function createWindow () {
     slashes: true
   }))
 
-  new SystemEventHandler(new StorageManager());
-}
+  new SystemEventHandler(new StorageManager()).listen();
+} 
 
-app.on('ready', createWindow)
+app.on('ready', createWindow) 
 
 
 
@@ -33,6 +33,9 @@ class SystemEventHandler{
   }
 
   listen(){
-    ipcMain.on(events.system.storage, message => this.storageManager[message.method](message.data));
+    ipcMain.on(events.system.storage, function(e, message) {
+      console.log('new Message ' + message)
+      this.storageManager[message.method](message.data)
+    }.bind(this));
   }
 }
