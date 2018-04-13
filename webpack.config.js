@@ -23,7 +23,7 @@ module.exports = {
     "path": "require('path')"
   },
 
-  devtool:"eval",
+  devtool:"source-map",
 
   module: {
     rules: [{
@@ -53,6 +53,7 @@ module.exports = {
   plugins: [ new HtmlWebpackPlugin({
     template:"./index.html",
     filename:"./index.html",
+    excludeChunks:["main"]
   })],
 
   "node": {
